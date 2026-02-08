@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Attendance</title>
+    <link rel="stylesheet" href="/static/uploads/style.css">
+</head>
+
+<body>
+    <div class="page-box">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+        <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+        {% endwith %}
+
+        <h2>Welcome {{ name }}</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <label>Select Date</label><br>
+            <input type="date" name="date" required><br><br>
+
+            <label>State</label><br>
+            <select name="state" id="state" required onchange="loadCities()">
+                <option value="">Select State</option>
+            </select><br><br>
+
+            <label>City</label><br>
+            <select name="city" id="city" required>
+                <option value="">Select City</option>
+            </select><br><br>
+
+            <label>Upload Photo</label><br>
+            <input type="file" name="photo" required><br><br>
+
+
+            <p id="status" style="color:red;">Capturing location...</p>
+
+
+            <input type="hidden" name="lat" id="lat">
+            <input type="hidden" name="lon" id="lon">
+
+            <button type="submit" id="submitBtn" disabled>
+                Mark Attendance
+            </button>
+
+        </form>
+    </div>
+
+    <script>
+
+        const stateCityData = {
+            "Uttar Pradesh": ["Lucknow", "Kanpur", "Noida"],
+            "Maharashtra": ["Mumbai", "Pune"],
+            "Delhi": ["New Delhi"],
+            "chhattisgarh": ["korba"]
+        };
+
+        const stateSelect = document.getElementById("state");
+        const citySelect = document.getElementById("city");
+
+        for (let state in stateCityData) {
+            let option = document.createElement("option");
+            option.value = state;
+            option.text = state;
+            stateSelect.add(option);
+        }
+
+        function loadCities() {
+            citySelect.innerHTML = '<option value="">Select City</option>';
+            let selectedState = stateSelect.value;
+
+            if (selectedState) {
+                stateCityData[selectedState].forEach(city => {
+                    let option = document.createElement("option");
+                    option.value = city;
+                    option.text = city;
+                    citySelect.add(option);
+                });
+            }
+        }
+
+
+        const submitBtn = document.getElementById("submitBtn");
+        const statusText = document.getElementById("status");
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    document.getElementById("lat").value = position.coords.latitude;
+                    document.getElementById("lon").value = position.coords.longitude;
+
+                    statusText.innerText = "Location captured ✔";
+                    statusText.style.color = "green";
+
+                    submitBtn.disabled = false;
+                },
+                function () {
+                    statusText.innerText = "Location permission denied ❌";
+                    statusText.style.color = "red";
+                    submitBtn.disabled = true;
+                }
+            );
+        } else {
+            statusText.innerText = "Geolocation not supported ❌";
+            submitBtn.disabled = true;
+        }
+    </script>
+    <footer>
+        © 2026 Richa Gupta. All Rights Reserved.
+    </footer>
+
+</body>
+
+</html>

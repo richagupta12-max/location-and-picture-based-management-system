@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Attendance Success</title>
+    <link rel="stylesheet" href="/static/uploads/style.css">
+</head>
+
+<body>
+
+    <div class="page-box">
+
+        <h2> Attendance Marked Successfully</h2>
+        <div class="tag">
+
+            <p><strong>Name:</strong> {{ name }}</p>
+            <p><strong>Date:</strong> {{ date }}</p>
+            <p><strong>State:</strong> {{ state }}</p>
+            <p><strong>City:</strong> {{ city }}</p>
+
+
+
+            {% if photo %}
+            <p><strong>Uploaded Photo:</strong></p>
+        </div>
+
+        <img src="{{ url_for('static', filename='uploads/' + photo) }}" class="photo">
+        {% endif %}
+
+        <p class="location"> Location Verified</p>
+
+        <a href="/dashboard" class="btn">Go to Dashboard</a>
+
+    </div>
+    <footer>
+        © 2026 Richa Gupta. All Rights Reserved.
+    </footer>
+</body>
+
+</html>

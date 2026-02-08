@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Attendance Record</title>
+    <link rel="stylesheet" href="/static/uploads/style.css">
+</head>
+
+<body>
+    <div class="page-box">
+
+        <h2 class="title">Your Attendance Record</h2>
+        <div class="tag">
+
+            {% if data %}
+            <table border="1" cellpadding="10" cellspacing="0" align="center">
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Time</th>
+                    <th>State</th>
+                    <th>City</th>
+                </tr>
+
+                {% for row in data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+            <p style="text-align:center;">No attendance record found</p>
+            {% endif %}
+        </div>
+
+        <br>
+        <div style="text-align:center;">
+            <a href="/dashboard" class="btn-green">Back to Dashboard</a>
+        </div>
+    </div>
+    <footer>
+        © 2026 Richa Gupta. All Rights Reserved.
+    </footer>
+
+</body>
+
+</html>

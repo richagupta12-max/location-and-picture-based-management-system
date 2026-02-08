@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/uploads/style.css">
+
+</head>
+
+<body>
+    <div class="page-box">
+        <h2 class="welcome">Welcome {{ name }}</h2>
+
+        <div class="card-container">
+
+            <a href="/entry" class="card entry">
+                <h3>Entry Attendance</h3>
+                <p>Mark your entry time</p>
+            </a>
+
+            <a href="/exit" class="card exit">
+                <h3>Exit Attendance</h3>
+                <p>Mark your exit time</p>
+            </a>
+
+            <a href="{{ url_for('record') }}" class="card record">
+                <h3>Attendance Record</h3>
+                <p>View entry, exit & duration</p>
+            </a>
+        </div>
+    </div>
+    <footer>
+        © 2026 Richa Gupta. All Rights Reserved.
+    </footer>
+
+</body>
+
+</html>

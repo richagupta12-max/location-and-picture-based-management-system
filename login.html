@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/uploads/style.css">
+</head>
+
+<body>
+    <div class="page-box">
+        <h2 class="title">Login</h2>
+
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+        <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+        {% endwith %}
+
+        <form method="POST" action="/login">
+
+            <label class="tag">Enter email</label>
+            <input type="email" name="email" placeholder="Email" required>
+            <br>
+
+            <label class="tag">Enter password</label>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <br>
+            <button type="submit" class="btn-green">Login</button>
+            <br>
+
+        </form>
+
+        <br>
+        <p class="tag">
+            <a href="{{ url_for('forgot_password') }}">Forgot Password?</a>
+
+        </p>
+        <br>
+        <p class="tag">New user <a href="/register">Create an account </a></p>
+
+    </div>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function () {
+            document.getElementById("loginBtn").disabled = true;
+        });
+    </script>
+    <footer>
+        © 2026 Richa Gupta. All Rights Reserved.
+    </footer>
+</body>
+
+</html>

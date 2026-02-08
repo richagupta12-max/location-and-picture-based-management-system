@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Verify OTP</title>
+    <link rel="stylesheet" href="/static/uploads/style.css">
+</head>
+
+<body>
+    <div class="page-box">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+        <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+        {% endwith %}
+
+        <h2 class="title">Verify OTP</h2>
+
+        <form method="POST" action="/verify-otp">
+            <label class="tag">Enter OTP</label>
+            <input name="otp" required>
+
+            <button class="btn-green">Verify</button>
+        </form>
+    </div>
+    <script>
+        console.log("DEBUG OTP (from backend): {{ debug_otp }}");
+    </script>
+    <footer>
+        © 2026 Richa Gupta. All Rights Reserved.
+    </footer>
+</body>
+
+</html>

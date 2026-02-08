@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/uploads/style.css">
+</head>
+
+<body>
+    <div class="page-box">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+        <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+        {% endwith %}
+
+        <h2 class="title">Create an account</h2>
+
+        <form method="POST" action="/register">
+
+            <label class="tag">First Name</label>
+            <input name="fname" required>
+
+            <label class="tag">Last Name</label>
+            <input name="lname" required>
+
+            <label class="tag">Email</label>
+            <input type="email" name="email" required>
+
+            <label class="tag">Password</label>
+            <input type="password" name="password" required>
+
+            <button type="submit" class="btn-red">Create an account</button>
+        </form>
+    </div>
+    <footer>
+        © 2026 Richa Gupta. All Rights Reserved.
+    </footer>
+</body>
+
+</html>
